@@ -1,0 +1,201 @@
+﻿<Window x:Class="SubWayDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SubWayDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" x:Name="win" WindowState="Maximized" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <Style TargetType="Path" x:Key="pathStyle">
+            <Style.Setters>
+                <Setter Property="StrokeThickness" Value="6"/>
+                <Setter Property="ToolTipService.IsEnabled" Value="False"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Stretch" Value="None"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="textblockStyle">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Focusable" Value="False"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Ellipse" x:Key="ellipseStyle">
+            <Style.Setters>
+                <Setter Property="Fill" Value="White"/>
+                <Setter Property="StrokeThickness" Value="2.5"/>
+                <Setter Property="Width" Value="13"/>
+                <Setter Property="Height" Value="13"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Image" x:Key="imgTran">
+            <Style.Setters>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Source" Value="/resTransfer.png"/>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="Image" x:Key="imgAir">
+            <Style.Setters>
+                <Setter Property="Height" Value="32"/>
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Source" Value="/resAirport.png"/>
+            </Style.Setters>
+        </Style>
+
+        <CombinedGeometry GeometryCombineMode="Exclude" x:Key="Transformer">
+            <CombinedGeometry.Geometry1>
+                <PathGeometry>
+                    <PathFigure StartPoint="20,10" IsClosed="True">
+                        <LineSegment Point="50,10" />
+                        <LineSegment Point="70, 100" />
+                        <LineSegment Point="0, 100" />
+                    </PathFigure>
+                </PathGeometry>
+            </CombinedGeometry.Geometry1>
+            <CombinedGeometry.Geometry2>
+                <CombinedGeometry>
+                    <CombinedGeometry.Geometry1>
+                        <CombinedGeometry>
+                            <CombinedGeometry.Geometry1>
+                                <RectangleGeometry Rect="0,30 70,5">
+                                    <RectangleGeometry.Transform>
+                                        <RotateTransform Angle="20" CenterX="35" CenterY="32.5" />
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </CombinedGeometry.Geometry1>
+                            <CombinedGeometry.Geometry2>
+                                <RectangleGeometry Rect="0,30 70,5">
+                                    <RectangleGeometry.Transform>
+                                        <RotateTransform Angle="-20" CenterX="35" CenterY="32.5" />
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </CombinedGeometry.Geometry2>
+                        </CombinedGeometry>
+                    </CombinedGeometry.Geometry1>
+                    <CombinedGeometry.Geometry2>
+                        <CombinedGeometry>
+                            <CombinedGeometry.Geometry1>
+                                <RectangleGeometry Rect="0,60 70,5">
+                                    <RectangleGeometry.Transform>
+                                        <RotateTransform Angle="20" CenterX="35" CenterY="62.5" />
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </CombinedGeometry.Geometry1>
+                            <CombinedGeometry.Geometry2>
+                                <RectangleGeometry Rect="0,60 70,5">
+                                    <RectangleGeometry.Transform>
+                                        <RotateTransform Angle="-20" CenterX="35" CenterY="62.5" />
+                                    </RectangleGeometry.Transform>
+                                </RectangleGeometry>
+                            </CombinedGeometry.Geometry2>
+                        </CombinedGeometry>
+                    </CombinedGeometry.Geometry2>
+
+                </CombinedGeometry>
+            </CombinedGeometry.Geometry2>
+        </CombinedGeometry>
+    </Window.Resources>
+    <Grid x:Name="mainGrid">
+        <Grid.Resources>
+            <TransformGroup x:Key="tfg">
+                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                <TranslateTransform X="0" Y="0"/>
+            </TransformGroup>
+
+
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0">
+            <Canvas Height="1821" Width="3486" x:Name="grid" RenderTransform="{StaticResource tfg}" Background="Transparent" MouseLeftButtonDown="ContentControl_MouseLeftButtonDown" MouseLeftButtonUp="ContentControl_MouseLeftButtonUp" MouseMove="ContentControl_MouseMove" MouseWheel="ContentControl_MouseWheel">
+
+                <Path  Fill="DodgerBlue" Canvas.Top="400" Canvas.Left="900" Data="{StaticResource Transformer}" />
+                <Path  Fill="DodgerBlue" Canvas.Top="1500" Canvas.Left="3200" Data="{StaticResource Transformer}" />
+
+
+                <!--<Image x:Name="image">
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingPath x:Name="yAnimation"  Storyboard.TargetProperty="(Canvas.Top)"
+                                                       Source="Y" RepeatBehavior="Forever"
+                                                      Duration="0:0:20"/>
+                                    <DoubleAnimationUsingPath x:Name="xAnimation"   Storyboard.TargetProperty="(Canvas.Left)"
+                                                       Source="X" RepeatBehavior="Forever"
+                                                      Duration="0:0:20"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                    <Image.Source>
+                        <DrawingImage>
+                            <DrawingImage.Drawing>
+                                <GeometryDrawing Brush="LightSteelBlue">
+                                    <GeometryDrawing.Pen>
+                                        <Pen Thickness="1" Brush="Black" />
+                                    </GeometryDrawing.Pen>
+                                    <GeometryDrawing.Geometry>
+                                        <CombinedGeometry >
+                                            <CombinedGeometry.Geometry1>
+                                                <RectangleGeometry Rect="0,0 28,10" />
+                                            </CombinedGeometry.Geometry1>
+                                            <CombinedGeometry.Geometry2>
+                                                <GeometryGroup>
+                                                    <EllipseGeometry Center="7,10" RadiusX="3" RadiusY="3" />
+                                                    <EllipseGeometry Center="21,10" RadiusX="3" RadiusY="3" />
+                                                </GeometryGroup>
+                                            </CombinedGeometry.Geometry2>
+                                        </CombinedGeometry>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingImage.Drawing>
+                        </DrawingImage>
+                    </Image.Source>
+                </Image>-->
+
+            </Canvas>
+
+            <!--<ContentControl x:Name="cc" MouseLeftButtonDown="ContentControl_MouseLeftButtonDown" MouseLeftButtonUp="ContentControl_MouseLeftButtonUp" MouseMove="ContentControl_MouseMove" MouseWheel="ContentControl_MouseWheel">
+                <Grid x:Name="grid" RenderTransform="{StaticResource tfg}" Background="Yellow" >
+                    
+                </Grid>
+            </ContentControl>-->
+        </Viewbox>
+        <Popup Grid.Row="1" x:Name="popPath" AllowsTransparency="True">
+            <Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path Stroke="Black" StrokeThickness="1" Fill="White" Data="M 0,0 L 120,0 L 120,30 L 65,30 L 60,35 L 55,30 L 0,30 Z"/>
+                    <Grid x:Name="grpopPath" Margin="5,5,5,10">
+                        <TextBlock x:Name="tbPath" Foreground="White" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{Binding Null}"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Popup>
+
+        <Popup Grid.Row="1" x:Name="popEllipse" AllowsTransparency="True" Opacity="0">
+            <Border BorderBrush="Transparent" BorderThickness="0" Background="Transparent" Opacity="0.7">
+                <Grid Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Path Stroke="Black" StrokeThickness="1" Fill="Black" Data="M 0,0 L 120,0 L 120,30 L 65,30 L 60,35 L 55,30 L 0,30 Z"/>
+                    <TextBlock x:Name="tbEllipse" Foreground="White" FontSize="13" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{Binding Null}"/>
+                </Grid>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>
