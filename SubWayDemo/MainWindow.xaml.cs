@@ -316,8 +316,8 @@ namespace SubWayDemo
             var path = new Path
             {
                 Data = pathGeometry,
-                Stroke = Brushes.DarkRed,
-                StrokeThickness = 1
+                Stroke = Brushes.White,
+                StrokeThickness = 2
             };
             path.StrokeDashArray.Add(14);
             path.StrokeDashArray.Add(6);
@@ -351,8 +351,8 @@ namespace SubWayDemo
             var path = new Path
             {
                 Data = pathGeometry,
-                Stroke = Brushes.DarkRed,
-                StrokeThickness = 1
+                Stroke = Brushes.White,
+                StrokeThickness = 2
             };
 
             path.StrokeDashArray.Add(14);

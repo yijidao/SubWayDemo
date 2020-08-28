@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SubWayDemo"
         mc:Ignorable="d"
+        Background="#2e3968"
         Title="MainWindow" Height="350" Width="525" x:Name="win" WindowState="Maximized" SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style TargetType="Path" x:Key="pathStyle">
